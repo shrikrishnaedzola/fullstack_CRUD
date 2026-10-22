@@ -9,15 +9,12 @@ from database import get_connection, init_db
 
 load_dotenv()
 
-raw_origins = os.getenv("ALLOWED_ORIGINS", "*")
-ALLOWED_ORIGINS = [origin.strip() for origin in raw_origins.split(",") if origin.strip()] or ["*"]
-
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
-    allow_credentials=False if "*" in ALLOWED_ORIGINS else True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
