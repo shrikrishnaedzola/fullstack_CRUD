@@ -20,7 +20,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-init_db()
+try:
+    init_db()
+except Exception as error:
+    print("init_db failed:", type(error).__name__, error)
 
 
 class ItemCreate(BaseModel):
