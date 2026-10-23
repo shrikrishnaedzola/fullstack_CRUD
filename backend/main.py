@@ -85,8 +85,8 @@ def update_item(item_id: int, item: ItemCreate):
     return {"id": item_id, "name": item.name}
 
 
-@app.delete("/items/{item_id}")
-def delete_item(item_id: int):
+@app.patch("/items/{item_id}")
+def delete_item(item_id: int,item: ItemCreate):
     conn = get_connection()
     cursor = conn.cursor()
 
@@ -96,7 +96,7 @@ def delete_item(item_id: int):
         conn.close()
         raise HTTPException(status_code=404, detail="Item not found")
 
-    cursor.execute("UPDATE items SET active = 0 WHERE id = %s", (item_id,))
+    cursor.execute("UPDATE items SET active = %s WHERE id = %s", (item.active,item_id))
     conn.commit()
     cursor.close()      
     conn.close()

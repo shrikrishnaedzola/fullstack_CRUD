@@ -1,5 +1,4 @@
-// const API_URL = "https://fullstackcrud-backend.vercel.app/items";
-const API_URL = "http://127.0.0.1:8000/items";
+const API_URL = "https://fullstackcrud-backend.vercel.app/items";
 
 async function loadItems() {
     const list = document.getElementById("itemList");
@@ -125,8 +124,12 @@ async function deleteItem(id, buttonElement) {
 
     try {
         await fetch(`${API_URL}/${id}`, {
-            method: "DELETE"
+            // method: "DELETE"
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ active: 0 })
         });
+        
 
         await loadItems();
     } catch (error) {
