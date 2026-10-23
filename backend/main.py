@@ -31,6 +31,10 @@ class ItemCreate(BaseModel):
     name: str
     active: int = 1
 
+class ItemPatch(BaseModel):
+    active: int
+
+
 
 @app.get("/")
 def home():
@@ -86,7 +90,7 @@ def update_item(item_id: int, item: ItemCreate):
 
 
 @app.patch("/items/{item_id}")
-def delete_item(item_id: int,item: ItemCreate):
+def delete_item(item_id: int,item: ItemPatch):
     conn = get_connection()
     cursor = conn.cursor()
 

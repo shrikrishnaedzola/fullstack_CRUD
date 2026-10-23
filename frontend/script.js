@@ -127,7 +127,7 @@ async function deleteItem(id, buttonElement) {
             // method: "DELETE"
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ active: 0 })
+            body: JSON.stringify({id, active: 0 })
         });
         
 
