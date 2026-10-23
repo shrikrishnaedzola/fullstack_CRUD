@@ -23,7 +23,8 @@ def init_db():
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS items (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            name VARCHAR(255) NOT NULL
+            name VARCHAR(255) NOT NULL,
+            active INT DEFAULT 1
         )
     """)
     conn.commit()

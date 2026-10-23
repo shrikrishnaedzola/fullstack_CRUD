@@ -4,18 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Items</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="app-card">
+        <h1>My Items</h1>
 
-    <h1>My Items</h1>
+        <div class="form-row">
+            <input type="text" id="itemInput" placeholder="Enter a new item...">
+            <button id="addButton">Add</button>
+        </div>
 
-    <div class="form-row">
-        <input type="text" id="itemInput" placeholder="Enter a new item">
-        <button id="addButton">Add</button>
+        <ul id="itemList"></ul>
     </div>
-
-    <ul id="itemList"></ul>
     <script src="script.js"></script>
 </body>
 </html>

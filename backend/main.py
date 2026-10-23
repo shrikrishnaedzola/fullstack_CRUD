@@ -29,17 +29,18 @@ except Exception as error:
 
 class ItemCreate(BaseModel):
     name: str
+    active: int = 1
 
 
 @app.get("/")
 def home():
-    return {"message":"API is running..."}
+    return {"message":"API is running... "}
 
 @app.get("/items")
 def get_item():
     conn = get_connection()
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT id, name FROM items")
+    cursor.execute("SELECT id, name, active FROM items")
     items = cursor.fetchall()
     cursor.close()
     conn.close()
@@ -95,9 +96,9 @@ def delete_item(item_id: int):
         conn.close()
         raise HTTPException(status_code=404, detail="Item not found")
 
-    cursor.execute("DELETE FROM items WHERE id = %s", (item_id,))
+    cursor.execute("UPDATE items SET active = 0 WHERE id = %s", (item_id,))
     conn.commit()
-    cursor.close()
+    cursor.close()      
     conn.close()
 
     return {"message": "Item deleted successfully"}
